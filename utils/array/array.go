@@ -10,3 +10,14 @@ func ArrayPop(s *[]interface{}) interface{} {
 	*s = (*s)[:ep]
 	return e
 }
+
+// 从数组中获取指定字段数组
+func ArrayColumn(input map[string]map[string]interface{}, columnKey string) []interface{} {
+	columns := make([]interface{}, 0, len(input))
+	for _, val := range input {
+		if v, ok := val[columnKey]; ok {
+			columns = append(columns, v)
+		}
+	}
+	return columns
+}
