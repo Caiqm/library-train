@@ -9,8 +9,11 @@ import (
 	"strings"
 )
 
+type Http struct {
+}
+
 // post请求
-func PostRequestWithByte(uri string, data []byte, contentType string) (body []byte, err error) {
+func (h Http) PostRequestWithByte(uri string, data []byte, contentType string) (body []byte, err error) {
 	resp, err := http.Post(uri, contentType, bytes.NewBuffer(data))
 	if err != nil {
 		return
@@ -25,7 +28,7 @@ func PostRequestWithByte(uri string, data []byte, contentType string) (body []by
 }
 
 // post请求
-func PostRequest(uri string, data url.Values, contentType string) (body []byte, err error) {
+func (h Http) PostRequest(uri string, data url.Values, contentType string) (body []byte, err error) {
 	resp, err := http.Post(uri, contentType, strings.NewReader(data.Encode()))
 	if err != nil {
 		return
@@ -40,7 +43,7 @@ func PostRequest(uri string, data url.Values, contentType string) (body []byte, 
 }
 
 // get请求
-func GetRequest(uri string) (body []byte, err error) {
+func (h Http) GetRequest(uri string) (body []byte, err error) {
 	resp, err := http.Get(uri)
 	if err != nil {
 		return
