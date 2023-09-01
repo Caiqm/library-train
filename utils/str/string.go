@@ -73,7 +73,7 @@ func (s Str) RandStr(length int) string {
 // 简易生成订单号 日期20191025时间戳1571987125435+3位随机数
 func (s Str) GenerateCode() string {
 	// 获取当前日期
-	date := date2.Time{}.GetDate()
+	date := date2.Time{TimeLayout: "20060102150405"}.GetDate()
 	r := rand.Intn(1000)
 	timeTick64 := time.Now().UnixNano() / 1e6
 	code := fmt.Sprintf("%s%d%03d", date, timeTick64, r)
